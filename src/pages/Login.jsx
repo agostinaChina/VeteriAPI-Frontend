@@ -1,67 +1,78 @@
 
-import { useState, useEffect } from 'react'
-import { iniciarSesion } from '../service/api.js'
+import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../context/AuthContext.jsx";
 
 function Login(){
     const [ error, setError] = useState('');
-
-    // Estados para el formulario
-    const [ mensaje, setMensaje ] = useState('Soy un mensaje');
+    const [ mensaje, setMensaje ] = useState('');
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
-    const [ token, setToken ] = useState('');
     const [ cargando, setCargando ] = useState(false);
+
+    const {login} = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const destino = location.state?.from?.pathname || '/perfil';
 
     async function handleSubmitLogin(event){
         event.preventDefault();
-        setCargando( true);
+        setCargando(true);
         setMensaje('');
 
         try {
-            const result = await iniciarSesion( email, password);
-            setMensaje( result);
-            // Guardamos el token en un estado o contexto
+            await login(email, password);
+            navigate(destino, { replace: true});
+
         } catch (error) {
-            setMensaje( error.message);
-            console.error( error.message);
+            console.error({ error});
+            setMensaje(error.message);
+            console.error(error.message);
         } finally {
-            setCargando(false)
+            setCargando(false);
         }
     }
 
     return(
-        <>
-            <h1>Page Login</h1>
-            
-            <form onSubmit={ handleSubmitLogin}>
-                <label htmlFor='email'> Email</label>
-                <input 
-                    type="email" 
-                    id='email' 
-                    value={email}
-                    onChange={ ( event) => setEmail( event.target.value) }
-                    required
-                />
+        <section className="auth-page">
+            <div className="auth-card">
+                <h1>¡Bienvenido!</h1>
+                <p className="auth-description">
+                    Ingresá a tu cuenta de VeteriAPI.
+                </p>
 
-                <label htmlFor="">Password</label>
-                <input 
-                    type="password" 
-                    id='password'
-                    value={password}
-                    onChange={ ( event) => setPassword( event.target.value) }
-                    required
-                />
+                <form onSubmit={handleSubmitLogin} className="auth-form">
+                    <label htmlFor='email'>Email</label>
+                    <input 
+                        type="email" 
+                        id='email' 
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
+                        required
+                    />
 
-                <button disabled={ cargando }
-                        type='submit'>{ cargando ? 'Ingresando...': 'Ingresar' }</button>
+                    <label htmlFor="password">Contraseña</label>
+                    <input 
+                        type="password" 
+                        id='password'
+                        value={password}
+                        onChange={(event) => setPassword(event.target.value)}
+                        required
+                    />
 
-            </form>
+                    <button 
+                        disabled={cargando}
+                        type='submit'
+                        className="auth-button"
+                    >
+                        {cargando ? 'Ingresando...' : 'Ingresar'}
+                    </button>
+                </form>
 
-                <p> { mensaje }</p>
-                <p>{ error}</p>
-
-
-        </>
+                <p className="auth-error">{mensaje}</p>
+                <p className="auth-error">{error}</p>
+            </div>
+        </section>
     )
 }
 

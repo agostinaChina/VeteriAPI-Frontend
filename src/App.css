@@ -1,184 +1,685 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-}
+/* NAVEGACIÓN */
 
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
-}
-
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
-}
-
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
+nav {
+    width: 100%;
+    min-height: 76px;
+    padding: 16px 5%;
+    background: var(--surface);
     border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
+    box-shadow: 0 2px 8px rgba(38, 54, 53, 0.05);
     display: flex;
-    padding: 6px 12px;
     align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
     justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
+    gap: 24px;
+    flex-wrap: wrap;
 }
 
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
+nav br {
+    display: none;
 }
 
-.ticks {
-  position: relative;
-  width: 100%;
+nav a {
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
+nav a:hover {
+    color: var(--primary);
+}
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
+nav button {
+    background: var(--surface);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+nav button:hover {
+    background: var(--border);
+    color: var(--text);
+}
+
+nav p {
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+
+
+/* ENCABEZADO */
+
+.app-header {
+    background: var(--primary);
+    color: white;
+    padding: 22px 5%;
+    text-align: center;
+}
+
+.app-header h1 {
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0;
+    margin: 0;
+}
+
+.app-header p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+
+/* CONTENIDO PRINCIPAL */
+
+.main-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 5%;
+    flex: 1;
+}
+
+
+/* INICIO */
+
+.home h1 {
+    font-size: 36px;
+    margin: 0 0 8px;
+}
+
+.home-description {
+    color: var(--text-muted);
+    margin-bottom: 36px;
+}
+
+.home h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+
+/* TARJETAS DE MASCOTAS */
+
+.pets-container,
+.user-pets-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+}
+
+.pet-card,
+.user-pet-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 3px 12px rgba(38, 54, 53, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pet-card:hover,
+.user-pet-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 18px rgba(38, 54, 53, 0.09);
+}
+
+.pet-card h3,
+.user-pet-card h3 {
+    color: var(--primary-dark);
+    font-size: 20px;
+    margin: 0 0 16px;
+}
+
+.pet-card p {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin: 9px 0;
+}
+
+.pet-card strong {
+    color: var(--text);
+}
+
+.error-message {
+    color: var(--danger);
+    margin-bottom: 16px;
+}
+
+
+/* LOGIN Y REGISTRO */
+
+.auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 35px 15px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 440px;
+    padding: 36px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgba(38, 54, 53, 0.06);
+}
+
+.auth-card h1 {
+    font-size: 30px;
+    text-align: center;
+    margin: 0 0 8px;
+}
+
+.auth-description {
+    color: var(--text-muted);
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 28px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.auth-form label {
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    color: var(--text);
+    background: white;
+    font-size: 15px;
+}
+
+.auth-form input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.auth-button {
+    margin-top: 18px;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    transition: background 0.2s ease;
+}
+
+.auth-button:hover {
+    background: var(--primary-dark);
+}
+
+.auth-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.auth-error {
+    color: var(--danger);
+    font-size: 14px;
+    margin-top: 12px;
+}
+
+
+/* PERFIL */
+
+.profile-page {
+    width: 100%;
+}
+
+.profile-heading {
+    margin-bottom: 28px;
+}
+
+.profile-heading h1 {
+    font-size: 36px;
+    margin: 0 0 8px;
+}
+
+.profile-heading p {
+    color: var(--text-muted);
+    font-size: 15px;
+}
+
+.profile-card {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(38, 54, 53, 0.05);
+}
+
+.profile-card h2 {
+    font-size: 20px;
+    margin-bottom: 24px;
+}
+
+.profile-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-info li {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.profile-info li span {
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.profile-info li strong {
+    color: var(--text);
+    font-size: 16px;
+}
+
+.profile-photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-left: 24px;
+    border-left: 1px solid var(--border);
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--primary-light);
+    margin-bottom: 24px;
+}
+
+.no-profile-image {
+    color: var(--text-muted);
+    margin: 30px 0;
+}
+
+.profile-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: left;
+}
+
+.profile-form label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.profile-form input {
+    width: 100%;
+    font-size: 13px;
+}
+
+.profile-form button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+}
+
+.profile-form button:hover {
+    background: var(--primary-dark);
+}
+
+.profile-form button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.profile-message {
+    margin-top: 18px;
+    color: var(--primary-dark);
+    font-size: 14px;
+}
+
+.profile-loading {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-muted);
+}
+
+
+/* PANELES DE ADMINISTRADOR Y USUARIO */
+
+.admin-page,
+.user-page {
+    width: 100%;
+}
+
+.admin-heading,
+.user-heading {
+    margin-bottom: 32px;
+}
+
+.admin-heading h1,
+.user-heading h1 {
+    font-size: 36px;
+    margin: 0 0 8px;
+}
+
+.admin-heading p,
+.user-heading p {
+    color: var(--text-muted);
+    font-size: 15px;
+}
+
+.admin-page > h2,
+.user-page > h2 {
+    font-size: 22px;
+    margin: 36px 0 20px;
+}
+
+
+/* FORMULARIOS DEL ADMINISTRADOR Y USUARIO */
+
+.admin-page form,
+.user-page form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 650px;
+    margin: 20px 0 32px;
+    padding: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(38, 54, 53, 0.04);
+}
+
+.admin-page form label,
+.user-page form label {
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 6px;
+}
+
+.admin-page form input,
+.admin-page form select,
+.user-page form input,
+.user-page form select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    background: white;
+    color: var(--text);
+    font-size: 15px;
+    box-sizing: border-box;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.admin-page form input:focus,
+.admin-page form select:focus,
+.user-page form input:focus,
+.user-page form select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.admin-page form button,
+.user-page form button {
+    margin-top: 12px;
+    padding: 13px 18px;
+    width: fit-content;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.admin-page form button:hover,
+.user-page form button:hover {
+    background: var(--primary-dark);
+}
+
+.admin-page form .error-message,
+.user-page form .error-message {
+    margin: 0;
+}
+
+
+/* VETERINARIOS */
+
+.veterinarians-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+    margin: 20px 0 32px;
+}
+
+.veterinarian-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 14px rgba(38, 54, 53, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.veterinarian-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(38, 54, 53, 0.08);
+}
+
+.veterinarian-card h3 {
+    color: var(--primary-dark);
+    font-size: 20px;
+    margin: 0 0 16px;
+}
+
+.veterinarian-card p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+.veterinarian-card strong {
+    color: var(--text);
+}
+
+
+/* TURNOS */
+
+.appointments-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 22px;
+    margin-bottom: 32px;
+}
+
+.appointment-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 14px rgba(38, 54, 53, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.appointment-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(38, 54, 53, 0.08);
+}
+
+.appointment-card h3 {
+    color: var(--primary-dark);
+    font-size: 20px;
+    margin: 0 0 18px;
+}
+
+.appointment-card p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+.appointment-card strong {
+    color: var(--text);
+}
+
+.appointment-date {
+    font-weight: 600;
+}
+
+.appointment-time {
+    display: inline-block;
+    background: var(--primary-light);
+    color: var(--primary-dark) !important;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.appointment-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.appointment-actions button {
+    padding: 9px 16px;
+    border: none;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.appointment-actions button:first-child {
+    background: var(--primary);
+    color: white;
+}
+
+.appointment-actions button:first-child:hover {
+    background: var(--primary-dark);
+}
+
+.appointment-actions button:last-child {
+    background: #f2e5e3;
+    color: var(--danger);
+}
+
+.appointment-actions button:last-child:hover {
+    background: #ead2cf;
+}
+
+/* ADAPTACIÓN A PANTALLAS PEQUEÑAS */
+
+@media (max-width: 650px) {
+    .main-content {
+        padding: 28px 18px;
+    }
+
+    .app-header {
+        padding: 18px;
+    }
+
+    .auth-card {
+        padding: 26px 20px;
+    }
+
+    .profile-card {
+        grid-template-columns: 1fr;
+        padding: 22px;
+    }
+
+    .profile-photo {
+        border-left: none;
+        border-top: 1px solid var(--border);
+        padding: 25px 0 0;
+    }
+
+    .admin-heading h1,
+    .user-heading h1,
+    .profile-heading h1,
+    .home h1 {
+        font-size: 28px;
+    }
+
+    .admin-page form,
+    .user-page form {
+        padding: 20px;
+    }
+
+    .veterinarians-container,
+    .appointments-container,
+    .pets-container,
+    .user-pets-container {
+        grid-template-columns: 1fr;
+    }
+
+        .appointment-actions button {
+        flex: 1;
+        min-width: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        gap: 12px;
+        padding: 14px;
+    }
+}
+
+nav a {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text);
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+nav a.active {
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
 }

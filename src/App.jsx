@@ -1,31 +1,59 @@
-import { Routes, Route, Link } from 'react-router-dom'
-import reactLogo from './assets/react.svg'
+
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
 
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Perfil from './pages/Perfil'
+import Admin from './pages/Admin'
+import Usuario from './pages/Usuario'
+import NotFound from './pages/NotFound'
+import AccesoDenegado from './pages/AccesoDenegado'
+
+import Nav from './components/Nav'
+import ProtectedRoute from './components/ProtectedRoute'
+import RoleRoute from './components/RoleRoute'
 
 function App() {
- 
 
-  return (
+  
+return (
     <>
-      <h1> Frontend</h1>
+      <header className="app-header">
+        <h1>VeteriAPI</h1>
+        <p>Sistema de gestión veterinaria</p>
+      </header>
 
-      <nav>
-        <Link to='/'> Inicio</Link> |
-        <Link to='/login'> Iniciar Sesión</Link> |
-        <Link to='/register'> Crear un cuenta</Link>
-      </nav>
+      <Nav />
 
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-      </Routes>
+      <main className="main-content">
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+
+          {/* Ruta para usuarios AUTENTICADOS */}
+          <Route element={<ProtectedRoute />}>
+            <Route path='/perfil' element={<Perfil />} />
+
+            {/* Rutas para usuarios AUTORIZADOS */}
+            <Route element={<RoleRoute rolesPermitidos={['admin']} />}>
+              <Route path='/admin' element={<Admin />} />
+            </Route>
+
+            <Route element={<RoleRoute rolesPermitidos={['user']} />}>
+              <Route path='/usuario' element={<Usuario />} />
+            </Route>
+          </Route>
+
+          <Route path='/acceso-denegado' element={<AccesoDenegado />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </main>
     </>
-  )
+)
+
 }
 
 export default App;
