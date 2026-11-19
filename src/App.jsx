@@ -1,7 +1,5 @@
-
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Link } from 'react-router-dom'
 import './App.css'
-
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -20,10 +18,12 @@ function App() {
   
 return (
     <>
-      <header className="app-header">
-        <h1>VeteriAPI</h1>
-        <p>Sistema de gestión veterinaria</p>
-      </header>
+    <header className="app-header">
+    <h1>
+        <Link to="/">VeteriAPI</Link>
+    </h1>
+    <p>Sistema de gestión veterinaria</p>
+</header>
 
       <Nav />
 

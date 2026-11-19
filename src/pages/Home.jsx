@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { obtenerMascotas, fetchPrivado } from "../service/api.js";
 import { useAuth } from "../context/AuthContext.jsx";
+import { Link } from "react-router-dom";
 
 function Home(){
     const [error, setError] = useState('');
@@ -21,25 +22,27 @@ function Home(){
         setMascotas(result.data);
     }
 
-    useEffect(() => {
-        async function cargarDatos(){
-            try {
-                await getMascotas();
+   useEffect(() => {
+    async function cargarDatos(){
+        if (!user) return;
 
-                if (esAdmin) {
-                    const result = await fetchPrivado('/api/users');
-                    setUsuarios(
-                        result.data.filter(usuario => usuario.role === 'user')
-                    );
-                }
-            } catch (error) {
-                console.log(error);
-                setError('No pudimos obtener las mascotas :(');
+        try {
+            await getMascotas();
+
+            if (esAdmin) {
+                const result = await fetchPrivado('/api/users');
+                setUsuarios(
+                    result.data.filter(usuario => usuario.role === 'user')
+                );
             }
+        } catch (error) {
+            console.log(error);
+            setError('No pudimos obtener las mascotas :(');
         }
+    }
 
-        cargarDatos();
-    }, [esAdmin]);
+    cargarDatos();
+}, [user, esAdmin]);
 
     useEffect(() => {
         if (user?.role !== 'user') return;
@@ -135,6 +138,50 @@ function Home(){
             console.error(error);
             setErrorGestion(error.message);
         }
+    }
+
+        if (!user) {
+        return (
+            <section className="home">
+                <h1>Bienvenido a VeteriAPI</h1>
+
+                <p className="home-description">
+                    Todo lo que necesitás para organizar la atención veterinaria.
+                </p>
+
+                <p>
+                    Una plataforma pensada para facilitar la gestión de mascotas,
+                    veterinarios y turnos en un solo lugar.
+                </p>
+
+                <div className="home-features">
+                    <article className="home-feature-card">
+                        <h2>🐾 Mascotas</h2>
+                        <p>
+                            Consultá y organizá la información de tus mascotas.
+                        </p>
+                    </article>
+
+                    <article className="home-feature-card">
+                        <h2>📅 Turnos</h2>
+                        <p>
+                            Organizá y consultá los turnos veterinarios.
+                        </p>
+                    </article>
+
+                    <article className="home-feature-card">
+                        <h2>🩺 Veterinarios</h2>
+                        <p>
+                            Conocé a los profesionales registrados en el sistema.
+                        </p>
+                    </article>
+                </div>
+
+                <p className="home-footer">
+                    Una gestión más simple, organizada y accesible.
+                </p>
+            </section>
+        );
     }
 
     return(

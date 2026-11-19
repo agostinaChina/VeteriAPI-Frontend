@@ -1,16 +1,64 @@
-# React + Vite
+# VeteriAPI - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web para la gestión de una veterinaria, desarrollada con React. Permite gestionar mascotas, veterinarios y turnos, con funcionalidades diferenciadas según el tipo de usuario.
 
-Currently, two official plugins are available:
+## Datos del alumno
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Nombre y apellido:** Agostina Gamboa Straus
+- **Materia:** Aplicaciones Híbridas
+- **Docente:** Jonathan Emanuel Cruz
+- **Comisión:** [26-2][DWN4AV]
 
-## React Compiler
+## Tecnologías utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19
+- Vite
+- React Router DOM
+- JWT Decode
+- JavaScript
 
-## Expanding the ESLint configuration
+## Funcionalidades
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Usuarios
+- Registro de cuenta.
+- Inicio y cierre de sesión.
+- Acceso a las mascotas propias.
+- Crreación de turnos propios.
+- Consulta de turnos propios.
+- Visualización y actualización de información del perfil.
+
+### Administrador
+- Registro, consulta, edición y eliminación de mascotas.
+- Registro y consulta de veterinarios.
+- Creación, consulta, edición y eliminación de turnos.
+
+## Instalación
+
+1. Clonar el repositorio:
+
+   https://github.com/agostinaChina/VeteriAPI-Frontend.git
+
+2. Ingresar a la carpeta del proyecto:
+
+   cd VeteriAPI-Frontend
+
+3. Instalar las dependencias:
+
+   npm install
+
+4. Crear un archivo `.env` en la raíz del proyecto y configurar la URL del backend:
+
+   VITE_API_URL=http://localhost:5000
+
+5. Iniciar el servidor de desarrollo:
+
+   npm run dev
+
+La aplicación esta disponible en la dirección local que indique Vite en la terminal, habitualmente `http://localhost:5173`.
+
+
+## Backend
+
+La aplicación necesita que el backend de VeteriAPI esté en funcionamiento para realizar las operaciones y consultas a la API.
+
+Repositorio del backend: https://github.com/agostinaChina/VeteriAPI
